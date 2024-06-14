@@ -22,11 +22,19 @@ namespace backend_pokemon_challenge.infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PokemonId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("PokemonMasterId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

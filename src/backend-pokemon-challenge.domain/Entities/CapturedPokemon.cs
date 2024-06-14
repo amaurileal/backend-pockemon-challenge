@@ -18,5 +18,10 @@ namespace backend_pokemon_challenge.domain.Entities
         [Required]
         public int PokemonId { get; set; }
 
+        [Required]
+        public string Name { get; set; } = default!;
+
+        public string Url { get; set; } = default!;
+
     }
 }
