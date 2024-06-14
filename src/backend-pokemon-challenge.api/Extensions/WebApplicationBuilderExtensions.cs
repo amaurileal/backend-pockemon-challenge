@@ -1,4 +1,6 @@
-﻿using Serilog;
+﻿using backend_pokemon_challenge.api.Middlewares;
+using Microsoft.OpenApi.Models;
+using Serilog;
 
 namespace backend_pokemon_challenge.api.Extensions
 {
@@ -9,11 +11,20 @@ namespace backend_pokemon_challenge.api.Extensions
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(option =>
+            {
+                option.SwaggerDoc(
+                    "v1",
+                    new OpenApiInfo { Title = "Pokemon Challenge", Version = "v1" }
+                );
+            });
 
-            builder.Host.UseSerilog((context, configuration) =>
-            configuration.ReadFrom.Configuration(context.Configuration)
-        );
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
+
+            builder.Host.UseSerilog(
+                (context, configuration) =>
+                    configuration.ReadFrom.Configuration(context.Configuration)
+            );
         }
     }
 }

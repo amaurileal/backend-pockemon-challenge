@@ -18,6 +18,8 @@ namespace backend_pokemon_challenge.application.Extensions
                 .AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
 
+            services.AddHttpClient();
+
             services.AddScoped<IPokemonApiService, PokemonApiService>();
         }
     }

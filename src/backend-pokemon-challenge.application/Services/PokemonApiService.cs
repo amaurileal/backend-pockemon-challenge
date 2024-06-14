@@ -20,10 +20,10 @@ namespace backend_pokemon_challenge.application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<PokemonDto>> GetPokemonsAsync()
+        public async Task<List<PokemonDto>> GetPokemonsAsync(int limit, int offset)
         {
             // URL do endpoint que retorna a lista de PokemonDto
-            var url = _configuration["UrlPokemonOficial"]+ "pokemon?limit=10&offset=0"; // substitua pelo URL real
+            var url = _configuration["UrlPokemonOficial"]+ $"pokemon?limit={limit}&offset={offset}"; // substitua pelo URL real
 
             // Fazendo a requisição HTTP GET
             var response = await _httpClient.GetAsync(url);
@@ -35,12 +35,12 @@ namespace backend_pokemon_challenge.application.Services
             var responseContent = await response.Content.ReadAsStringAsync();
 
             // Desserializando o JSON em uma lista de PokemonDto
-            var pokemons = JsonSerializer.Deserialize<List<PokemonDto>>(responseContent, new JsonSerializerOptions
+            var pokemonsResponse = JsonSerializer.Deserialize<PokemonApiResponse>(responseContent, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
 
-            return pokemons;
+            return pokemonsResponse.Results;
         }
     }
 }

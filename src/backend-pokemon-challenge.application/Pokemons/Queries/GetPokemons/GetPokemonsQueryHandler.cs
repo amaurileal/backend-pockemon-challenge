@@ -14,7 +14,7 @@ namespace backend_pokemon_challenge.application.Pokemons.Queries.GetPokemons
     {
         public async Task<IEnumerable<PokemonDto>> Handle(GetPokemonsQuery request, CancellationToken cancellationToken)
         {
-            return await service.GetPokemonsAsync();
+            return await service.GetPokemonsAsync(request.Limit, request.Offset);
         }
     }
 }

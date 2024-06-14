@@ -10,5 +10,8 @@ namespace backend_pokemon_challenge.application.Pokemons.Queries.GetPokemons
 {
     public class GetPokemonsQuery : IRequest<IEnumerable<PokemonDto>>
     {
+        public int Limit { get; set; }
+
+        public int Offset { get; set; }
     }
 }

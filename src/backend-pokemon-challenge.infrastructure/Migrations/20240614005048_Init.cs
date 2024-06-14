@@ -32,7 +32,9 @@ namespace backend_pokemon_challenge.infrastructure.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     PokemonMasterId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PokemonId = table.Column<int>(type: "INTEGER", nullable: false)
+                    PokemonId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Url = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

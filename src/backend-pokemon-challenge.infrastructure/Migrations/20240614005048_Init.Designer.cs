@@ -10,7 +10,7 @@ using backend_pokemon_challenge.infrastructure.Persistence;
 namespace backend_pokemon_challenge.infrastructure.Migrations
 {
     [DbContext(typeof(PokemonChallengeDdContext))]
-    [Migration("20240609192819_Init")]
+    [Migration("20240614005048_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -25,11 +25,19 @@ namespace backend_pokemon_challenge.infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PokemonId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("PokemonMasterId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
